@@ -5,3 +5,27 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+User.delete_all
+Coin.delete_all
+
+3.times do
+  User.create({
+    email: Faker::Internet.unique.email
+  })
+end
+
+Coin.create({
+  name: "Bitcoin",
+  ticker: "BTC"
+})
+
+Coin.create({
+  name: "Ethereum",
+  ticker: "ETH"
+})
+
+Coin.create({
+  name: "Ripple",
+  ticker: "XRP"
+})
