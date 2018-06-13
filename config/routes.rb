@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :users, :only => [:show]
       resources :coins, :only => [:index]
+      resources :holdings, :except => [:new, :edit]
     end
   end
 end
