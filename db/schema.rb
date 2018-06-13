@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_12_182403) do
+ActiveRecord::Schema.define(version: 2018_06_13_142457) do
 
   create_table "coins", force: :cascade do |t|
     t.string "name"
@@ -24,6 +24,8 @@ ActiveRecord::Schema.define(version: 2018_06_12_182403) do
     t.integer "portfolio_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "coin_id"
+    t.index ["coin_id"], name: "index_holdings_on_coin_id"
     t.index ["portfolio_id"], name: "index_holdings_on_portfolio_id"
   end
 
