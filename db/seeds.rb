@@ -34,3 +34,4 @@ Coin.create({
 
 Portfolio.create(user_id: User.first.id)
 Holding.create(portfolio_id: Portfolio.first.id, coin_id: Coin.first.id, quantity: 65)
+Price.create(price: rand(5500..20000), coin_id: Coin.first.id, timestamp: Time.now())
