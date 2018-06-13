@@ -8,6 +8,8 @@
 
 User.delete_all
 Coin.delete_all
+Portfolio.delete_all
+Holding.delete_all
 
 3.times do
   User.create({
@@ -29,3 +31,6 @@ Coin.create({
   name: "Ripple",
   ticker: "XRP"
 })
+
+Portfolio.create(user_id: User.first.id)
+Holding.create(portfolio_id: Portfolio.first.id, coin_id: Coin.first.id, quantity: 65)
