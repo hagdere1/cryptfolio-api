@@ -11,11 +11,17 @@ Coin.delete_all
 Portfolio.delete_all
 Holding.delete_all
 
-3.times do
-  User.create({
-    email: Faker::Internet.unique.email
-  })
-end
+User.create({
+  email: "hgagdere@gmail.com",
+  password: "Password123",
+  password_confirmation: "Password123"
+})
+
+User.create({
+  email: "aagdere@gmail.com",
+  password: "Password123",
+  password_confirmation: "Password123"
+})
 
 Coin.create({
   name: "Bitcoin",
