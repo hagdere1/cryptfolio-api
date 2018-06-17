@@ -6,7 +6,7 @@ class ApplicationController < ActionController::API
   helper_method :user_signed_in?, :current_user
 
   def user_signed_in?
-    current_person.present?
+    authenticate_token.present?
   end
 
   def current_user
