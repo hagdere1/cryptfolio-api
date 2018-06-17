@@ -21,7 +21,7 @@ class ApplicationController < ActionController::API
   private
     def authenticate_token
       authenticate_with_http_token do |token, options|
-        User.find_by(auth_token: token)
+        User.find_by(auth_token: token).where("token_created_at >= ?", 1.month.ago).first
       end
     end
 end
