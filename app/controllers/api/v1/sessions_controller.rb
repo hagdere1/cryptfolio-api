@@ -15,16 +15,13 @@ module Api
       end
 
       def destroy
-        logger.debug "User ID: #{params[:id]}"
-        logger.debug "User signed in?: #{current_user}"
-
         user = User.find_by(id: params[:id])
 
         if user && user.auth_token
           user.invalidate_auth_token
-          render json: { status: "success" }
+          render json: { status: "success" }, status: 200
         else
-          render json: { status: "failed" }
+          render json: { status: "failed" }, status: 401
         end
       end
     end

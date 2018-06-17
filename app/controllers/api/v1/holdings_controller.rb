@@ -1,10 +1,6 @@
 module Api
   module V1
     class HoldingsController < ApplicationController
-      def index
-        holdings = Holding.where(portfolio_id: params[:portfolio_id])
-      end
-
       def create
         holding = Holding.new(holdings_params)
 
