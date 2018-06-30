@@ -7,6 +7,8 @@ Rails.application.routes.draw do
       resources :holdings, only: [:create, :update, :destroy]
       resources :sessions, only: [:create, :destroy]
       resources :portfolio, only: [:index]
+      get '/latest_prices' => 'prices#latest_prices'
+      get '/historical_prices' => 'prices#historical_prices'
     end
   end
 end
