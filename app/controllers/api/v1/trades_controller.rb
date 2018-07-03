@@ -33,7 +33,7 @@ module Api
         trade = Trade.find(params[:id])
 
         if trade.update(trade_params)
-          render json: { status: "success", data: true }, status: :ok
+          render json: { status: "success", data: true }, status: 200
         else
           render json: { status: "error", data: false }, status: :internal_server_error
         end
@@ -43,7 +43,7 @@ module Api
         trade = Trade.find(params[:id])
 
         if trade.destroy
-          render json: { status: "success", data: true }, status: :ok
+          render json: { status: "success", data: true }, status: 200
         else
           render json: { status: "error", data: false }, status: :internal_server_error
         end

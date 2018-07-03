@@ -32,7 +32,7 @@ module Api
         transfer = Transfer.find(params[:id])
 
         if transfer.update(transfer_params)
-          render json: { status: "success", data: true }, status: :ok
+          render json: { status: "success", data: true }, status: 200
         else
           render json: { status: "error", data: false }, status: :internal_server_error
         end
@@ -42,7 +42,7 @@ module Api
         transfer = Transfer.find(params[:id])
 
         if transfer.destroy
-          render json: { status: "success", data: true }, status: :ok
+          render json: { status: "success", data: true }, status: 200
         else
           render json: { status: "error", data: false }, status: :internal_server_error
         end

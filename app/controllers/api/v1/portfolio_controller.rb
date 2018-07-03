@@ -18,7 +18,7 @@ module Api
           holdings: holdings
         }
 
-        render json: { status: "success", data: data }, status: :ok
+        render json: { status: "success", data: data }, status: 200
       end
     end
   end
