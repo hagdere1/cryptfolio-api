@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_17_151930) do
+ActiveRecord::Schema.define(version: 2018_07_03_010755) do
 
   create_table "coins", force: :cascade do |t|
     t.string "name"
@@ -43,6 +43,33 @@ ActiveRecord::Schema.define(version: 2018_06_17_151930) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["coin_id"], name: "index_prices_on_coin_id"
+  end
+
+  create_table "trades", force: :cascade do |t|
+    t.decimal "sell_quantity", null: false
+    t.integer "sell_coin_id", null: false
+    t.decimal "buy_quantity", null: false
+    t.integer "buy_coin_id", null: false
+    t.integer "user_id", null: false
+    t.string "exchange", null: false
+    t.datetime "timestamp", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["buy_coin_id"], name: "index_trades_on_buy_coin_id"
+    t.index ["sell_coin_id"], name: "index_trades_on_sell_coin_id"
+    t.index ["user_id"], name: "index_trades_on_user_id"
+  end
+
+  create_table "transfers", force: :cascade do |t|
+    t.decimal "quantity", null: false
+    t.string "from_address", null: false
+    t.string "to_address", null: false
+    t.integer "coin_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["coin_id"], name: "index_transfers_on_coin_id"
+    t.index ["user_id"], name: "index_transfers_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
