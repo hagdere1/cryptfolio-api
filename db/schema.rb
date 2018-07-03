@@ -64,8 +64,9 @@ ActiveRecord::Schema.define(version: 2018_07_03_010755) do
     t.decimal "quantity", null: false
     t.string "from_address", null: false
     t.string "to_address", null: false
-    t.integer "coin_id"
-    t.integer "user_id"
+    t.datetime "timestamp", null: false
+    t.integer "coin_id", null: false
+    t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["coin_id"], name: "index_transfers_on_coin_id"
