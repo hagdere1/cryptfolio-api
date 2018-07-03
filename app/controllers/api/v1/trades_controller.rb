@@ -20,12 +20,33 @@ module Api
       end
 
       def create
+        trade = Trade.new(trade_params)
+
+        if trade.save
+          render json: { status: "success", data: trade }, status: 200
+        else
+          render json: { status: "error", data: false }, status: :internal_server_error
+        end
       end
 
       def update
+        trade = Trade.find(params[:id])
+
+        if trade.update(trade_params)
+          render json: { status: "success", data: true }, status: :ok
+        else
+          render json: { status: "error", data: false }, status: :internal_server_error
+        end
       end
 
       def destroy
+        trade = Trade.find(params[:id])
+
+        if trade.destroy
+          render json: { status: "success", data: true }, status: :ok
+        else
+          render json: { status: "error", data: false }, status: :internal_server_error
+        end
       end
 
       private
