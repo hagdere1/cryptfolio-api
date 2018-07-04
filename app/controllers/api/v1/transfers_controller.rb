@@ -21,6 +21,8 @@ module Api
       def create
         transfer = Transfer.new(transfer_params)
 
+        # Check if transfer is from or to user's address
+
         if transfer.save
           render json: { status: "success", data: transfer }, status: 200
         else
@@ -30,6 +32,8 @@ module Api
 
       def update
         transfer = Transfer.find(params[:id])
+
+        # First undo transfer, then reapply new value to holdings
 
         if transfer.update(transfer_params)
           render json: { status: "success", data: true }, status: 200

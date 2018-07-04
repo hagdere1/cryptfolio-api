@@ -4,4 +4,6 @@ class Coin < ApplicationRecord
 
   has_many :prices
   has_many :holdings
+  has_many :trades
+  has_many :transfers
 end

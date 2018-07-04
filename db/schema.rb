@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_03_224908) do
+ActiveRecord::Schema.define(version: 2018_07_04_000715) do
 
   create_table "addresses", force: :cascade do |t|
     t.string "address", null: false
@@ -72,14 +72,16 @@ ActiveRecord::Schema.define(version: 2018_07_03_224908) do
 
   create_table "transfers", force: :cascade do |t|
     t.decimal "quantity", null: false
-    t.string "from_address", null: false
-    t.string "to_address", null: false
     t.datetime "timestamp", null: false
     t.integer "coin_id", null: false
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "to_address_id", null: false
+    t.integer "from_address_id", null: false
     t.index ["coin_id"], name: "index_transfers_on_coin_id"
+    t.index ["from_address_id"], name: "index_transfers_on_from_address_id"
+    t.index ["to_address_id"], name: "index_transfers_on_to_address_id"
     t.index ["user_id"], name: "index_transfers_on_user_id"
   end
 

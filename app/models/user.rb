@@ -8,6 +8,8 @@ class User < ApplicationRecord
 
   has_one :portfolio, dependent: :destroy
   has_many :holdings, through: :portfolios
+  has_many :trades
+  has_many :transfers
 
   def generate_auth_token
     token = SecureRandom.hex
