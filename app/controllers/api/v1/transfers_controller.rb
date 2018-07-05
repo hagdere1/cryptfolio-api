@@ -21,7 +21,13 @@ module Api
       def create
         transfer = Transfer.new(transfer_params)
 
-        # Check if transfer is from or to user's address
+        if Address.find(params[:from_address_id]).is_user && !Address.find(params[:to_address_id]).is_user
+          # Subtract from holdings
+          holding = Holding.where(user_id: current_user.id).find(params[:coin_id]).subtract(params[:quantity])
+        elsif Address.find(params[:to_address_id]).is_user && !Address.find(params[:from_address_id]).is_user
+          # Add to holdings
+          holding = Holding.where(user_id: current_user.id).find(params[:coin_id]).add(params[:quantity])
+        end
 
         if transfer.save
           render json: { status: "success", data: transfer }, status: 200
@@ -54,7 +60,7 @@ module Api
 
       private
         def transfer_params
-          params.require(:transfer).permit(:quantity, :coin_id, :quantity, :to_address, :from_address, :user_id, :timestamp)
+          params.require(:transfer).permit(:quantity, :coin_id, :quantity, :to_address_id, :from_address_id, :user_id, :timestamp)
         end
     end
   end

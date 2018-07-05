@@ -5,4 +5,12 @@ class Holding < ApplicationRecord
 
   belongs_to :portfolio
   belongs_to :coin
+
+  def add(amount)
+    self.update_columns(quantity: self.quantity + amount)
+  end
+
+  def subtract(amount)
+    self.update_columns(quantity: self.quantity - amount)
+  end
 end
