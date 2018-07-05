@@ -22,6 +22,8 @@ module Api
       def create
         trade = Trade.new(trade_params)
 
+        # Update holdings
+
         if trade.save
           render json: { status: "success", data: trade }, status: 200
         else
@@ -32,6 +34,8 @@ module Api
       def update
         trade = Trade.find(params[:id])
 
+        # Update holdings
+
         if trade.update(trade_params)
           render json: { status: "success", data: true }, status: 200
         else
@@ -41,6 +45,8 @@ module Api
 
       def destroy
         trade = Trade.find(params[:id])
+
+        # Update holdings
 
         if trade.destroy
           render json: { status: "success", data: true }, status: 200
