@@ -10,16 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_04_000715) do
+ActiveRecord::Schema.define(version: 2018_07_05_181845) do
 
   create_table "addresses", force: :cascade do |t|
     t.string "address", null: false
     t.string "label"
     t.boolean "is_user", default: false
-    t.integer "user_id", null: false
+    t.integer "creator_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_addresses_on_user_id"
+    t.index ["creator_id"], name: "index_addresses_on_creator_id"
   end
 
   create_table "coins", force: :cascade do |t|

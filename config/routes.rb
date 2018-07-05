@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       resources :trades, only: [:index, :create, :update, :destroy]
       resources :transfers, only: [:index, :create, :update, :destroy]
       resources :addresses, only: [:index, :create, :update, :destroy]
+      get '/user_addresses' => 'addresses#get_user_addresses'
       get '/latest_prices' => 'prices#latest_prices'
       get '/historical_prices' => 'prices#historical_prices'
     end
