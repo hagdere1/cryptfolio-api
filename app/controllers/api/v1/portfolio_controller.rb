@@ -7,7 +7,7 @@ module Api
 
         portfolio.holdings.each do |holding|
           holdings[holding.id] = {
-            coin_id: holding.coin_id,
+            coin: Coin.find_by(id: holding.coin_id).name,
             quantity: holding.quantity,
             price: Price.where(coin_id: holding.coin_id).order("created_at").last.price.to_s
           }
