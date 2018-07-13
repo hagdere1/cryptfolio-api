@@ -5,7 +5,8 @@ Rails.application.routes.draw do
       resources :users, only: [:create]
       get '/user' => 'users#show'
       resources :coins, only: [:index]
-      resources :sessions, only: [:create, :destroy]
+      post '/login' => 'sessions#create'
+      get '/logout' => 'sessions#destroy'
       resources :portfolio, only: [:index]
       resources :trades, only: [:index, :create, :update, :destroy]
       resources :transfers, only: [:index, :create, :update, :destroy]

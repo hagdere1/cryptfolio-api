@@ -1,12 +1,13 @@
 module Api
   module V1
     class SessionsController < ApplicationController
+      skip_before_action :require_login!, only: [:create], raise: false
+
       def create
-        user = User.find_for_database_authentication(email: params[:email])
-        # user = User.where(email: params[:email]).exists?
+        user = User.find_for_database_authentication(email: params[:user][:email])
         user ||= User.new
 
-        if user.valid_password?(params[:password])
+        if user.valid_password?(params[:user][:password])
           auth_token = user.generate_auth_token
           render json: { status: "success", data: user }
         else
@@ -15,14 +16,11 @@ module Api
       end
 
       def destroy
-        user = User.find_by(id: params[:id])
-
-        if user && user.auth_token
+        authenticate_with_http_token do |token, options|
+          user = User.find_by(auth_token: token)
           user.invalidate_auth_token
-          render json: { status: "success" }, status: 200
-        else
-          render json: { status: "failed" }, status: 401
         end
+        render json: { status: "success" }, status: 200
       end
     end
   end

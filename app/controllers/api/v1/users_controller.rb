@@ -1,6 +1,8 @@
 module Api
   module V1
     class UsersController < ApplicationController
+      skip_before_action :require_login!, only: [:create], raise: false
+
       def create
         user = User.new(user_params)
 
